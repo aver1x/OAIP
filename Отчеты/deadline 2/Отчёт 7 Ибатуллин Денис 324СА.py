@@ -1,0 +1,43 @@
+from typing import Any
+
+def sum_numbers(*args: float) -> float:
+    """Возвращает сумму чисел."""
+    return sum(args)
+
+def build_user_profile(user_id: int, **kwargs: Any) -> dict[str, Any]:
+    """Создает профиль пользователя."""
+    return {"user_id": user_id, **kwargs}
+
+def calc_avg(scores: list[float]) -> float:
+    """Вычисляет среднее оценок."""
+    return sum(scores) / len(scores)
+
+def fmt_fio(surname: str, name: str, patronymic: str) -> str:
+    """Форматирует ФИО."""
+    return " ".join(part.capitalize() for part in (surname, name, patronymic))
+
+def filter_scores(scores: list[int], minimum: int = 4) -> list[int]:
+    """Оставляет оценки от порога."""
+    return [score for score in scores if score >= minimum]
+
+call_counter = 0
+def increment_counter() -> None:
+    """Увеличивает глобальный счетчик."""
+    global call_counter
+    call_counter += 1
+
+def format_report(report_title: str, *data: Any, **properties: Any) -> None:
+    """Печатает данные и свойства отчета."""
+    print(f"## {report_title}", *data, properties, sep="\n")
+
+def find_common_elements(list1: list[Any], list2: list[Any]) -> list[Any]:
+    """Возвращает общие элементы без дубликатов."""
+    return list(dict.fromkeys(item for item in list1 if item in list2))
+
+print(sum_numbers(1, 2, 3))
+print(build_user_profile(7, name="Денис"))
+print(calc_avg([4, 5, 5]), fmt_fio("иванов", "иван", "иванович"))
+print(filter_scores([3, 4, 5]))
+increment_counter()
+format_report("Результат", "Функции выполнены", author="Денис")
+print(find_common_elements([1, 2, 2, 3], [2, 3, 4]))

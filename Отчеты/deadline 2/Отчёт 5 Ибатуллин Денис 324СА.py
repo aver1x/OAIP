@@ -1,0 +1,32 @@
+from math import hypot
+
+# 1
+point_a, point_b = (3, 7), (10, 2)
+print(hypot(point_b[0] - point_a[0], point_b[1] - point_a[1]))
+
+# 2
+students = [("Анна", 21, 4.8), ("Борис", 19, 4.5), ("Вера", 22, 5.0)]
+print([student for student in students if student[1] > 20])
+print(max(students, key=lambda student: student[2]))
+print(sorted(students))
+
+# 3
+colors = {"красный": (255, 0, 0), "зеленый": (0, 255, 0), "синий": (0, 0, 255), "белый": (255, 255, 255), "черный": (0, 0, 0)}
+def mix(first, second): return tuple((a + b) // 2 for a, b in zip(colors[first], colors[second]))
+def invert(name): return tuple(255 - value for value in colors[name])
+colors["желтый"] = mix("красный", "зеленый")
+print(colors, invert("синий"))
+
+# 4
+words = set(input().lower().split())
+print(len(words), {word for word in words if len(word) > 5})
+print("python" in words or "programming" in words)
+
+# 5
+math_students = {"Анна", "Борис", "Вера"}
+physics_students = {"Борис", "Вера", "Глеб"}
+programming_students = {"Вера", "Глеб", "Дана"}
+all_groups = (math_students, physics_students, programming_students)
+print(math_students & physics_students & programming_students)
+print({name for name in set.union(*all_groups) if sum(name in group for group in all_groups) == 1})
+print(math_students - physics_students, len(set.union(*all_groups)))
